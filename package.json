@@ -1,0 +1,30 @@
+{
+    "name": "familienduell",
+    "version": "1.0.0",
+    "license": "MIT",
+    "scripts": {
+        "build": "rescript build",
+        "build-with-deps": "rescript build -with-deps",
+        "build-dev": "rescript build -w",
+        "bundle-and-serve-web": "node esbuild.mjs",
+        "bundle-prod": "node esbuild.prod.mjs",
+        "dev": "NINJA_ANSI_FORCED=1 concurrently --kill-others pnpm:build-dev pnpm:bundle-and-serve-web",
+        "prod": "pnpm run build-with-deps && pnpm run bundle-prod",
+        "run-server": "deno run --allow-net --allow-sys --allow-read=public/ src/server/server.mjs",
+        "compile-server-windows": "deno compile --allow-net --allow-sys --allow-read=public/ --target x86_64-pc-windows-msvc src/server/server.mjs"
+    },
+    "devDependencies": {
+        "concurrently": "^8.0.1",
+        "esbuild": "^0.17.18",
+        "rescript": "11.0.0-beta.1"
+    },
+    "dependencies": {
+        "@emotion/css": "^11.10.8",
+        "@rescript/core": "^0.3.1",
+        "@rescript/react": "^0.11.0",
+        "codeflask": "^1.4.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "rescript-struct": "^4.1.1"
+    }
+}
